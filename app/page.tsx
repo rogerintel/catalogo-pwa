@@ -31,6 +31,9 @@ export default async function HomePage() {
 
   return (
     <main style={{ fontFamily: 'sans-serif', padding: '20px' }}>
+      <Link href="/admin/create" style={{ display: 'inline-block', marginBottom: '20px', padding: '10px 15px', backgroundColor: 'blue', color: 'white', textDecoration: 'none', borderRadius: '5px' }}>
+        + Criar Novo Produto
+      </Link>
       <h1>Nosso Catálogo de Produtos</h1>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px' }}>
         {products.length > 0 ? (
