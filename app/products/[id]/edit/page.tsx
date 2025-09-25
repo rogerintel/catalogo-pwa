@@ -59,6 +59,30 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     }
   };
 
+    const handleDelete = async () => {
+    // Pede confirmação ao usuário
+    if (!window.confirm('Tem certeza que deseja deletar este produto? Esta ação não pode ser desfeita.')) {
+      return; // Se o usuário clicar em "Cancelar", a função para aqui
+    }
+
+    try {
+      const response = await fetch(`http://localhost:4000/products/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete product');
+      }
+
+      alert('Produto deletado com sucesso!');
+      router.push('/'); // Redireciona para a página inicial
+
+    } catch (error) {
+      console.error(error);
+      alert('Erro ao deletar produto.');
+    }
+  };
+
   if (loading) {
     return <p>Carregando dados do produto...</p>;
   }
@@ -72,6 +96,9 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
         <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Preço" required />
         <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="URL da Imagem" required />
         <button type="submit" style={{ padding: '10px' }}>Salvar Alterações</button>
+        <button type="button" onClick={handleDelete} style={{ padding: '10px', backgroundColor: '#dc3545', color: 'white', border: 'none', cursor: 'pointer', marginTop: '10px', borderRadius: '5px' }}>
+          Deletar Produto
+        </button>
       </form>
     </main>
   );
