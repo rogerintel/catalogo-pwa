@@ -1,4 +1,5 @@
 // app/products/[id]/page.tsx
+import Link from 'next/link';
 
 interface Product {
   id: string;
@@ -31,6 +32,9 @@ export default async function ProductPage({ params }: { params: { id: string } }
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={product.imageUrl} alt={product.name} style={{ width: '100%', maxWidth: '500px', height: 'auto' }} />
         <h1>{product.name}</h1>
+        <Link href={`/products/${product.id}/edit`} style={{ display: 'inline-block', marginBottom: '20px', padding: '8px 12px', backgroundColor: '#f0f0f0', textDecoration: 'none', color: 'black', borderRadius: '5px' }}>
+          ✏️ Editar Produto
+        </Link>
         <p style={{ fontSize: '1.2em', color: '#333' }}>{product.description}</p>
         <p style={{ fontWeight: 'bold', fontSize: '1.5em', color: 'green' }}>R$ {product.price.toFixed(2)}</p>
       </div>
