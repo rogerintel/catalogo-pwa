@@ -13,7 +13,7 @@ interface Product {
 // Esta função vai rodar no servidor para buscar os dados
 async function getProducts(): Promise<Product[]> {
   // Em uma aplicação real, esta URL viria de uma variável de ambiente
-  const response = await fetch('http://localhost:4000/products', {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`, {
     cache: 'no-store' // Importante para sempre buscar dados novos durante o desenvolvimento
   });
   

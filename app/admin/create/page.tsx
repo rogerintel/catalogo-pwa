@@ -24,7 +24,7 @@ export default function CreateProductPage() {
     };
 
     try {
-      const response = await fetch('http://localhost:4000/products', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

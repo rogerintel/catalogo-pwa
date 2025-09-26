@@ -10,7 +10,7 @@ interface Product {
 }
 
 async function getProductById(id: string): Promise<Product> {
-  const response = await fetch(`http://localhost:4000/products/${id}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, {
     cache: 'no-store'
   });
   

@@ -18,7 +18,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
   // Use useEffect to fetch the product data when the page loads
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:4000/products/${id}`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`)
         .then(res => res.json())
         .then(product => {
           // Pre-fill the form with the product's data
@@ -42,7 +42,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     };
 
     try {
-      const response = await fetch(`http://localhost:4000/products/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, {
         method: 'PUT', // The key difference: using PUT
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedProduct),
@@ -66,7 +66,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     }
 
     try {
-      const response = await fetch(`http://localhost:4000/products/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, {
         method: 'DELETE',
       });
 
